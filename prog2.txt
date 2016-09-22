@@ -1,4 +1,4 @@
-
+--saurabh
 insert into prog (pname,dob,doj,sex,prof1,prof2,salary)values ('Anand',to_date('04/21/1966','mm/dd/yyyy'),to_date('04/21/1992','mm/dd/yyyy'),'M','Pascal','Basic ',3200);
 insert into prog values('Altaf',to_date('7/2/1964','mm/dd/yyyy'),to_date('11/13/1990','mm/dd/yyyy'),'M','Clipper','Cobol',2800);
 
