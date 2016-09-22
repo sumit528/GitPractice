@@ -1,0 +1,75 @@
+1) Display the cost of the package developed by each programmer?
+
+Ans:  select pname , sum (dcost) from soft group by pname;
+
+
+2) Display the sale values of the packages developed by the each programmer?
+
+Ans:   select pname , sum (scost) from soft group by pname;
+
+
+3) Display the number of packages sold by each programmer?
+
+Ans:  select pname , sum (sold) from soft group by pname;
+
+
+4) Display the sales cost of the packages developed by each programmer, language wise?
+
+Ans: select pname ,lang, sum (scost*sold) from soft group by pname,lang;
+
+
+5) Display each language with average development cost, average selling cost and average price per copy?
+
+Ans: select lang , avg(dcost),avg (scost), avg(scost*sold) from soft group by lang;
+
+
+6) Display each programmers name costliest package and cheapest packages developed by him/her?
+
+Ans: select pname,  max(scost),min(scost) from soft group by pname;
+
+
+7) Display each institute name with the number of courses, average cost per course?
+
+Ans:  select splace, count(course) "Number of course", avg(ccost) "Average Cost" from studies group by splace;
+
+
+8) Display each institute name with number of students?
+
+Ans:  select splace, count(pname) "Number of Students" from studies group by splace;
+
+
+9) Display the name of male and female programmers
+
+Ans:  select sex, pname from prog group by sex, pname;
+
+
+10) Display the programmers name and their ,packages
+
+Ans:  select pname , salary "package" from prog group by pname, salary;
+
+Note : Duplicate values will be shown once.
+
+
+11) Display the number of packages in each language, except c and c++?
+
+Ans:  select dev, count(title) from soft where dev NOT IN ('C', 'C++') group by dev
+
+
+12) Display the number of packages in each languages for which development cost is less than 10000?
+
+Ans: select lang, count(*) from soft where dcost > 10000 group by dev; 
+
+
+13)	Display the average difference between scost and dcost for each language?
+
+Ans:  select dev, avg((scost* sold)-dcost) from soft where group by dev;
+
+
+14)	Display the total scost, dcost and amount to be recovered for each programmer for those whose dcost has not yet been recovered?
+
+Ans: select pname, (scost*sold) "total scost" , dcost ,  (scost*sold)-dcost "amount to be recovered"  from soft; 
+
+
+15)	Display highest, lowest and average salaries for those earn more than 2000?
+
+Ans:  select  max(salary),min(salary),avg(salary) from prog where salary > 2000 ;

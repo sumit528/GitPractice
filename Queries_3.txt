@@ -1,0 +1,283 @@
+1) Who is the highest paid C programmer?
+
+Ans:
+select pname "highest sal" from prog where salary=(
+select  max(salary) from prog where prof1='C' or  prof2='C');
+
+
+2) Who is the highest paid COBOL programmer?
+
+Ans:
+
+select pname "highest sal" from prog where salary=(
+select  max(salary) from prog where  prof1='COBOL'  or prof2='COBOL');
+
+
+3) Display the names of the highest paid programmer for each language (prof1)?
+
+Ans:
+select prof1, pname,salary  from  prog where (prof1,salary) in  
+(select prof1, max(salary)  from prog group by prof1);
+
+
+4) Who is the least experienced programmer?
+
+Ans:
+select pname, ((sysdate - DOJ) /365.25) from prog where DOJ=(select max (DOJ) from prog);
+
+
+
+5)   Who does the most experienced male programmer know Pascal?
+
+Ans:
+select pname, ((sysdate - DOJ) /365.25) from prog where DOJ=(
+select min (DOJ) from prog where prof1='Pascal'  or prof2='Pascal')  and sex='M';
+
+
+6) Which language is known by only the programmer?
+
+Ans:Incomplete Question
+
+
+7) Who is the above programmer?
+
+Ans: Incomplete Question
+
+
+8) Who does the youngest programmer know DBASE?
+
+Ans:
+select pname, ((sysdate - DOB) /365.25) from prog where DOB=(
+select max (DOB) from prog where prof1='DBase'  or prof2='DBase'); 
+
+
+9) Which female programmer earning  more than 3000 doesn’t 
+
+Ans: Incomplete Question
+
+
+10) Which institute has the most number of students?
+
+Ans:
+select splace, count(pname) from studies group by splace
+having count(pname)=(select max(count(pname)) from studies group by splace); 
+
+Will two same highest number will work?
+
+
+11) Which course has been done by the most of the students?
+
+Ans:
+select course,count(pname) from studies group by course
+having count(pname)=(select max(count(pname)) from studies group by course); 
+
+
+12) Display the name of the institute and the course which has below average course fee?
+
+Ans:
+select splace, course from studies where ccost < (select avg(ccost) from studies);
+
+select splace, course from studies where ccost < (select avg(ccost) from studies) group by splace,course;
+
+
+13) Which is the costliest course?
+
+Ans:
+select course, ccost from studies where ccost=(select max(ccost) from studies);
+
+
+14) Which institute conducts the costliest course?
+
+Ans:
+select splace, course, ccost from studies where ccost=(select max(ccost) from studies);
+
+
+15) Which course has below average number of students?
+
+Ans:
+select course, count(pname) from studies group by course
+having count(pname) < (select avg(count(pname)) from studies group by course);
+
+
+16) Which institute conducts the above course?
+
+Ans:
+select splace from studies where course=( select course from studies
+group by course having count(pname) < (select avg(count(pname)) from studies group by course));
+
+
+17) Display the name of the course whose fees are within 1000(+ or - ) of the average fee?
+
+Ans:
+
+
+
+18) Which package has the highest development cost?
+
+Ans:
+select title, dcost from soft where dcost = (select max(dcost) from soft);
+
+
+19) Which package has the lowest selling cost?
+
+Ans:
+select title, dcost from soft where scost = (select min(scost) from soft);
+
+
+20) Who developed the package that has sold the least number of copies?
+
+Ans:
+select pname, title, sold from soft where sold=(select min(sold) from soft);
+
+
+21) Which language was used to develop the package which has the highest sales amount?
+
+Ans:
+select dev, title, scost from soft where scost= (select max(scost) from soft);
+
+
+22) How many copies of the package that has the least difference between development and selling cost were sold?
+
+Ans:
+select sold from soft group by sold having min(abs(dcost-scost))=( select min(abs(dcost-scost)) from soft ) 
+
+
+
+23) Which is the costliest package developed in Pascal?
+
+Ans:
+select title,dcost from soft where dcost=(select max(dcost) from soft where dev='Pascal');
+
+
+24) Which language was used to develop the most number of packages?
+
+Ans:
+select dev, count(title) from soft group by dev having 
+count(title)=(select max(count(title)) from soft group by dev);
+
+25)	Which programmer has developed the highest number of packages?
+
+Ans:
+select pname, count(title) from soft group by pname having count(title)=(
+select max(count(title)) from soft group by pname);
+
+26)	Who is the author of the READ ME package?
+
+Ans:
+select pname from soft where title='Read Me';
+
+27)	Display the name of the package which has sold less than average number of copies?
+
+Ans:
+select title, sold from soft where sold < (select avg(sold) from soft );
+ 
+
+28)	Who are the authors of the packages which have recovered more than double the development cost?
+
+Ans:
+select pname,dcost,scost  from soft where  (2*dcost) <  ((sold*scost)-dcost);
+
+
+
+29)	Display the programmer names and the cheapest package developed by them in each language?
+
+Ans:
+select dev,pname,title,dcost from soft where 
+(dev,dcost) in (select dev, min(dcost) from soft group by dev);
+
+
+30)	Display the language used by each programmer to develop the highest selling and the lowest selling package?
+
+Ans:
+
+select title as low from (
+select title from (
+select title,max(scost*sold) as sell from soft group by title) order by sell  )
+where rownum <=1
+union
+select title as high from (
+select title from (
+select title,max(scost*sold) as sell from soft group by title) order by sell  desc )
+where rownum <=1;
+
+
+ with
+ ab as (
+ select pname, lang,(scost* sold) as sellmax from soft where (scost* sold)  in
+ (select max(scost* sold) from soft group by pname)),
+cd as (
+select pname, lang,(scost* sold) as sellmin  from soft where (scost* sold)  in
+(select min(scost* sold) from soft group by pname))
+select a.pname, a.lang, a.sellmax, b.lang, b.sellmin from ab a, cd b  where 
+a.pname=b.pname;
+
+
+31)	Who is the youngest male programmer born in 1965?
+
+Ans: 
+select pname,sex, dob from (select * from prog where sex='M' and to_char(DOB,'yy')='65' order by dob desc) where rownum <=1;
+
+
+32)	Who is the oldest female programmer who joined in 1992?
+
+Ans: 
+
+select pname,sex, doj from (select * from  prog  where sex='F' and to_char(DOJ,'yy')='92' order by doj )  where  rownum <= (select max(count(*)) from  prog where to_char(DOJ,'yy')='92' group by doj);
+
+
+select pname from  ( select pname, max((sysdate-dob)/365) as age from (select pname, doj,dob from prog where to_char(doj,'yy')='92' and sex='F') group by pname order by age desc ) where rownum <=1; 
+
+
+33)	In which year were the most number of programmer join?
+
+Ans: 
+select year from (select to_char(DOJ,'yy') as year , count(*) from prog group by to_char(DOJ,'yy') order by year desc) where rownum <=1;
+
+
+
+34)	In which month did most number of programmers join?
+
+Ans:
+select mon from (select to_char(DOJ,'mon') as mon , count(*) from prog 
+group by to_char(DOJ,'mon') order by mon)  where rownum <=1;
+
+
+35)	IN which language is most of the programmer’s proficient?
+
+select prof1 from ( select prof1,num1 from ( select prof1,count(*) as num1 from prog group by prof1
+union
+select prof2,count(*) as num1 from prog group by prof2) order by num1 desc) where 
+rownum <=1;
+
+
+
+36)	Who are the male programmers earning below the average salary of female programmers?
+
+Ans:
+
+select pname from prog where salary > (select avg(salary) from prog where sex='F') 
+and sex ='M';
+
+
+
+37)	Who are the female programmers earning more than the highest paid male programmer?
+
+Ans:
+select pname from prog where salary > (
+select MAX(salary) from prog 
+where sex='M') 
+and sex ='F';
+
+
+
+38)	Which language has been seated as prof1 by the most of the programmer?
+
+Ans: 
+select prof1 from (
+select prof1,count(*) as num1 from prog group by prof1 order by num1 desc)
+where  rownum <=1;
+
+
+
+Q) How to extract least experience emp name by using epr. year column which actually do not exists in the table??
+

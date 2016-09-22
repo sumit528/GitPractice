@@ -1,0 +1,16 @@
+create table studies(pname varchar2(10),splace varchar2(10),
+course varchar2(10),ccost number(5));
+
+insert into studies values('Anand','Sabhari','PGDCA',6500);
+insert into studies values('Altaf','Coit','DCA',7200);
+insert into studies values('Juliana','Bits','MCA',22000);
+insert into studies values('Kamala','Pragathi','DCP',5000);
+insert into studies values('Mary','Sabhari','PGDCA',4500);
+insert into studies values('Nelson','Pragathi','DAP',6200);
+insert into studies values('Partick','Pragathi','DCAP',5200);
+insert into studies values('Qadir','Apple','HDCP',14000);
+insert into studies values('Ramesh','Sabhari','PGDCA',4500);
+insert into studies values('Rebecca','Brilliant','DCA&P',11000);
+insert into studies values('Remitha','BDPS','DCS',6000);
+insert into studies values('Revathi','Sabhari','DCP',5000);
+insert into studies values('Vijaya','BDPS','DCA',47500);

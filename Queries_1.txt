@@ -1,0 +1,165 @@
+2) Display the Names and Ages of all the programmers.
+
+Ans:
+select pname, trunc((sysdate - to_date(dob,'MM-DD-YY'))/365.25) Age from prog;
+
+select pname, trunc((sysdate-dob)/365.25) Age from prog;
+
+
+3) Display the Names of those who have done the DAP Course.
+
+Ans: select pname from studies where course ='DAP';
+
+
+4) What is the HIGHEST number of copies sold by a package?
+
+Ans: select max(sold) from soft;
+
+
+5) Display the NAMES and DATE OF BIRTH of all programmers born in JANUARY.
+
+Ans: select pname, dob from prog where to_char(dob,'MM')='01';
+
+
+6) Display the LOWEST course fee.
+
+Ans: select min(ccost) from studies;
+
+
+7) HOW MANY programmers have done PGDGA Course.
+
+Ans:SELECT COUNT(PNAME) FROM STUDIES WHERE COURSE ='PGDCA';
+
+
+8) How much revenue has been earned through sale of packages developed in C.?
+
+Ans: SELECT SUM (SCOST*SOLD) - SUM(DCOST) FROM SOFT WHERE DEV='C';
+
+
+9) Display the details of the software developed by RAMESH.
+
+Ans: select title,dev,dcost,scost from soft where pname = 'Ramesh''
+
+
+10) HOW MANY programmers studied at SABMARI?
+
+Ans: select count(pname) from studies where  splace ='Sabhari';
+
+
+11) Display the details of PACKAGES whose sales CROSSED the 2000 mark.
+
+Ans: select title, dev from soft where ((scost * sold)-dcost) > 2000;
+
+
+12) Find out the NUMBER OF COPIES which should be sold in order to recover the DEVELOPMENT.
+
+Ans:
+select title,((dcost-sold*scost)/scost) "no. of copies" from soft where NOT (((scost * sold)-dcost) > 0);
+
+ select sum((dcost-sold*scost)/scost) "no. of copies" from soft where NOT (((scost * sold)-dcost) > 0);
+
+
+
+13) Display the details of packages for WHICH development cost has been recovered.
+
+Ans: select title, dev from soft where ((scost * sold)-dcost) > 0;
+
+
+14) What is the price of the costliest software developed in BASIC?
+
+Ans: SELECT TITLE FROM SOFT WHERE DCOST = ( SELECT MAX(DCOST) FROM SOFT WHERE DEV='Basic') and dev='Basic';
+
+
+15) HOW MANY packages were developed in DBASE?
+
+Ans: SELECT count(TITLE) FROM SOFT WHERE  dev='Dbase';
+
+
+16) HOW MANY programmers studied as PRAGATHI?
+
+Ans: SELECT count(pname) FROM studies WHERE  splace='Pragathi';
+
+
+17) HOW MANY programmers paid 5000 to 10000 for their course?
+
+Ans: SELECT count(pname) FROM studies WHERE  ccost  between 5000 and 10000;
+
+
+18) What is the average course fee?
+
+Ans:
+select avg(ccost) from studies;
+
+select sum(ccost)/count(pname) from studies;
+
+
+19) Display the DETAILS of programmers knowing C?
+
+Ans: select * from prog where prof1='C' or prof2='C';
+
+
+20) HOW MANY programmers know either COBOL or PASCAL?
+
+Ans:
+select count(*) from prog where  prof1='Cobol' or prof2='Pascal' or prof1='Pascal' or prof2='Cobol';
+
+select count(*) from prog where prof1 IN('Cobol','Pascal') or prof2 IN ('Pascal','Cobol');
+
+
+
+21) HOW MANY programmers DON’T know PASCAL and C?
+
+Ans:
+select count(*) from prog where prof1 not IN('C','Pascal') and prof2 not IN ('Pascal','C');
+
+select count(*) from prog where NOT (prof1='C' or prof2='Pascal' or prof1='Pascal' or prof2='C');
+
+
+22) HOW old is the OLDEST male Programmer?
+
+Ans: select max(trunc((sysdate-dob)/365.25)) from prog;
+
+
+23) What is the AVERAGE age of female programmers?
+
+Ans:
+
+select avg(trunc((sysdate-dob)/365.25)) from prog where sex='F';
+
+select sum(trunc((sysdate-dob)/365.25))/count(pname) from prog where sex='F';
+
+
+24) CALCULATE the experience in years for each programmers and display along with the names in DESCENDING order?
+
+Ans: select pname, trunc((sysdate - doj)/365.25) Experience from prog order by Experience desc; 
+
+
+25) WHO are the programmers who celebrated their BIRTHDAY’S during the CURRENT MONTH?
+
+Ans: select pname from prog to_char(sysdate,'MM')=to_char(doj,'mm');
+
+
+26) How many male programmers are there? 
+
+Ans:  select  pname,dob from prog where to_char(dob,'mm')=to_char(sysdate,'mm');
+
+
+27) WHAT are the languages known by the male programmers? 
+
+Ans: select count(*) from prog where sex='M';
+
+
+28) What is average salary?
+
+Ans: select avg(salary) from prog;
+
+
+29) How many people draw 2000 to 4000?
+
+Ans:  SELECT count(pname) FROM prog WHERE  salary  between 2000 and 4000;
+
+
+30) Display the details of those who don’t clipper, COBOL and Pascal.
+
+Ans: select * from prog where prof1 not IN('Clipper','Pascal','Cobol') and prof2 not IN ('Clipper','Pascal','Cobol');
+

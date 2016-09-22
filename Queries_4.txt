@@ -1,0 +1,239 @@
+1)	Display the details of those who are drawing the same salary?
+
+Ans:
+select pname, salary from prog where salary in
+ (select salary from prog group by salary
+ having count(*) > 1);
+
+
+
+2)	Display the details of the software developed by the male programmers earning more than 3000?
+
+Ans:
+
+select title from soft where pname in ( select pname from prog
+where salary > 3000 and sex='M');
+
+
+select soft.title
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+prog.salary > 3000 and 
+prog.sex='M';
+
+
+3)	Display the details of the packages developed in Pascal by female programmers?
+
+Ans:
+select title from soft where lang='Pascal' and pname in (select pname from prog where sex='F');
+
+select soft.title
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+soft.lang = 'Pascal' and 
+prog.sex='F';
+
+
+
+4)	Display the details of those programmers who joined before 1990?
+
+Ans:
+select pname from prog where to_char(doj,'yy') < '90'
+
+5)	Display the details of the software developed in C by female programmers of PRAGATHI?
+
+Ans:
+select title from soft where lang='C' and pname in (select pname from prog where sex='F') and
+pname in (select pname from studies where splace='Sabhari');
+
+
+6)	Display the number of packages, number of copies sold and sales values of each programmer?
+
+Ans:
+with
+ab as (
+select  pname, count(title) as num from soft group by pname)
+select a.pname,title,sold, ab.num from soft a full outer join  ab  on
+a.pname=ab.pname 
+/
+
+select  pname, count(title),sum(sold),sum(scost*sold) from soft group by pname;
+
+7)	Display the details of the software developed in dbase by male programmers who belong to the institute in which most number of programmers studied?
+
+Ans:
+select splace from (select splace , count(*) as num from studies group by splace order by num desc) where num = (select max(count(*)) from studies group by splace);
+
+
+select title  from soft where lang='Dbase' and pname in (select pname from studies where splace = (select splace from (select splace , count(*) as num from studies group by splace order by num desc) where num = (select max(count(*)) from studies group by splace))) and pname in (select pname from prog where sex='M');
+
+
+select soft.title
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+soft.lang = 'Dbase' and 
+prog.sex='M' and
+studies.splace = (select max(splace)  from studies ) ;
+
+
+8)	Display the details of the software developed by the male programmers born in 1965 and female programmers after 1975?
+
+Ans:
+select pname,title from soft where
+pname in (select pname from prog where to_char(dob,'yy') ='65' and sex='M'
+union
+select pname from prog where to_char(dob,'yy') ='75' and sex='F');
+
+
+select prog.pname,soft.title
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+soft.lang = 'Dbase' and 
+(to_char(dob,'yy') ='65' and sex='M' or
+to_char(dob,'yy') ='75' and sex='F');
+
+9)	Display the details of the software that has developed in the languages that is not programmer’s first proficiency?
+
+Ans:
+select * from soft where lang not in (select prof1 from prog);
+
+
+10)	Display the details of the software that has developed in the language which is neither the first nor the second proficiency of the programmer?
+
+Ans:
+select * from soft where lang not in (select prof1 from prog)
+and lang not in (select prof2 from prog);
+
+
+
+11)	Display the details of the software developed by the male students of SABHARI?
+
+Ans: 
+select * from soft where pname in  (select pname from prog where sex='M') and pname in (select
+pname from studies where splace = 'Sabhari');
+
+
+select soft.pname,soft.title
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+splace='Sabhari' and sex='M';
+
+12)	Display the names of programs which have not been developed by the male students of SABHARI?
+
+Ans:
+
+select * from soft where pname  in  (select pname from prog where sex='M') and pname not in (select
+pname from studies where splace = 'Sabhari');
+
+
+select soft.pname,soft.title
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+splace <> 'Sabhari' and sex='M';
+
+
+13) What is the total cost of the software developed by the programmer of apple?
+
+Ans: 
+select  sum(dcost) from soft where pname in ( select pname from studies where splace = 'Apple');
+
+select soft.sum(dcost) 
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+splace='Apple';
+
+
+
+14)	Who are the programmers who joined in the same day?
+
+Ans:
+select pname, doj from prog where doj in (select doj from prog group by doj having count(*) > 1);
+
+
+15)	Who are the programmers who have same prof2?
+
+Ans: 
+select pname from prog where prof2  in (select prof2 from prog group by prof2 having count(*) > 1);
+
+
+16)	Display the total sales value of software institute wise?
+
+Ans: 
+select sum(scost* sold) from soft where pname in (select pname from studies where splace  in (select distinct(splace) from studies ) ;
+
+with 
+ab as (
+select pname,splace from studies where splace in (select splace  from studies group by splace))
+select * from ab full outer join soft a on ab.pname=a.pname;
+
+
+
+
+17)	In which institution does the person who developed the costliest package study?
+
+Ans:
+select pname, splace from studies where pname in (select  pname from soft where dcost = (select max(dcost) from soft ));
+
+
+
+18)	Which language listed in prof1 and prof2 has not been used to develop any package?
+
+Ans:
+select prof1 from  
+(select prof1 from prog  union  select prof2 from prog ) 
+minus 
+select lang from soft;
+
+
+
+
+19)	How much does the person who developed the highest selling package earn and what course did person undergo?
+
+select prog.salary, studies.course from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+soft.scost = (select max(scost) from soft);
+
+
+
+20)	How many months will it take for each programmer to recover the cost of the courser underwent?
+
+
+
+21)	Which is the costliest package developed by a person which under 3 year experience?
+
+select soft.title, prog.pname 
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+ (sysdate-doj)/365 < 17 and 
+soft.dcost = (select max(dcost) from soft);
+
+
+
+22)	What is the average salary for those whose software’s sales value is more that 50000?
+
+Ans: 
+select avg(prog.salary) 
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+(scost*sold) > 50000;
+
+23)	How many packages were developed by the person studied in institute that charges the lowest course fee?
+
+select count(prog.title) from 
+from studies,prog,soft 
+where prog.pname=studies.pname and 
+studies.pname = soft.pname and 
+studies.ccost = ( select min(ccost) from studies);
+
+
+

@@ -1,0 +1,184 @@
+
+1)Display the cost of the package developed by each programmer?
+
+2)Display the Names and Ages of all the programmers.
+
+3)Display the Names of those who have done the DAP Course.
+
+4)What is the HIGHEST number of copies sold by a package?
+
+5)Display the NAMES and DATE OF BIRTH of all programmers born in JANUARY.
+
+6)Display the LOWEST course fee.
+
+7)HOW MANY programmers have done PGDGA Course.
+
+8)How much revenue has been earned through sale of packages developed in C.?
+
+9)Display the details of the software developed by RAMESH.
+
+10)HOW MANY programmers studied at SABMARI?
+
+11)Display the details of PACKAGES whose sales CROSSED the 2000 mark.
+
+12)Find out the NUMBER OF COPIES which should be sold in order to recover the DEVELOPMENT.
+
+13)Display the details of packages for WHICH development cost has been recovered.
+
+14)What is the price of the costliest software developed in BASIC?
+
+15)HOW MANY packages were developed in DBASE?
+
+
+16)HOW MANY programmers studied as PRAGATHI?
+
+17)HOW MANY programmers paid 5000 to 10000 for their course?
+
+18)What is the average course fee?
+
+19)Display the DETAILS of programmers knowing C?
+
+
+20)HOW MANY programmers know either COBOL or PASCAL?
+
+21)HOW MANY programmers DON’T know PASCAL and C?
+
+22)HOW old is the OLDEST male Programmer?
+
+23)What is the AVERAGE age of female programmers?
+
+24)CALCULATE the experience in years for each programmers and display along with the names in DESCENDING order?
+
+25)WHO are the programmers who celebrated their BIRTHDAY’S during the CURRENT MONTH?
+
+26)How many male programmers are there? 
+
+27)WHAT are the languages known by the male programmers? 
+
+28)What is average salary?
+
+29)How many people draw 2000 to 4000?
+
+30)Display the details of those who don’t clipper, COBOL and Pascal.
+
+31)Display the sale values of the packages developed by the each programmer?
+
+32)Display the number of packages sold by each programmer?
+
+33)Display the sales cost of the packages developed by each programmer, language wise?
+
+34)Display each language with average development cost, average selling cost and average price per copy?
+
+35)Display each programmers name costliest package and cheapest packages developed by him/her?
+
+36)Display each institute name with the number of courses, average cost per course?
+
+37)Display each institute name with number of students?
+
+38)Display the name of male and female programmers
+
+39)Display the programmers name and their ,packages
+
+40)Display the number of packages in each language, except c and c++?
+
+41)Display the number of packages in each languages for which development cost is less than 10000?
+
+42)Display the average difference between scost and dcost for each language?
+
+43)Display the total scost, dcost and amount to be recovered for each programmer for those whose dcost has not yet been recovered?
+
+44)Display highest, lowest and average salaries for those earn more than 2000?
+=================================================================================
+1)Who is the highest paid C programmer?
+
+2)Who is the highest paid COBOL programmer?
+
+3)Display the names of the highest paid programmer for each language (prof1)?
+
+4)Who is the least experienced programmer?
+
+5)Who does the most experienced male programmer know Pascal?
+
+6)Which language is known by only the programmer?
+
+Ans:Incomplete Question
+
+
+7)Who is the above programmer?
+
+
+8)Who does the youngest programmer know DBASE?
+
+9)Which female programmer earning  more than 3000
+
+10)Which institute has the most number of students?
+
+11) Which course has been done by the most of the students?
+
+12)Display the name of the institute and the course which has below average course fee?
+
+13)Which is the costliest course?
+
+14)Which institute conducts the costliest course?
+
+15)Which course has below average number of students?
+
+16)Which institute conducts the above course?
+
+17)Display the name of the course whose fees are within 1000(+ or - ) of the average fee?
+
+
+18)Which package has the highest development cost?
+
+19)Which package has the lowest selling cost?
+
+20)Who developed the package that has sold the least number of copies?
+
+
+21)Which language was used to develop the package which has the highest sales amount?
+
+22)How many copies of the package that has the least difference between development and selling cost were sold?
+
+
+23)Which is the costliest package developed in Pascal?
+
+24)Which language was used to develop the most number of packages?
+
+25)Which programmer has developed the highest number of packages?
+
+26)Who is the author of the READ ME package?
+
+27)Display the name of the package which has sold less than average number of copies?
+
+28)Who are the authors of the packages which have recovered more than double the development cost?
+
+29)Display the programmer names and the cheapest package developed by them in each language?
+
+30)Display the language used by each programmer to develop the highest selling and the lowest selling package?
+
+31)Who is the youngest male programmer born in 1965?
+
+32)Who is the oldest female programmer who joined in 1992?
+
+33)In which year were the most number of programmer join?
+
+
+34)In which month did most number of programmers join?
+
+35)IN which language is most of the programmer’s proficient?
+
+
+36)Who are the male programmers earning below the average salary of female programmers?
+
+
+
+
+37)Who are the female programmers earning more than the highest paid male programmer?
+
+
+
+38)Which language has been seated as prof1 by the most of the programmer?
+
+Q) How to extract least experience emp name by using epr. year column which actually do not exists in the table??
+
+

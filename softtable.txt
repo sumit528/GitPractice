@@ -1,0 +1,19 @@
+create table soft(pname varchar2(10),title varcahr2(20),lang varchar2(10),
+dcost number(6),scost number(6),sold number(3));
+
+
+insert into soft values('Anand','Pharacutes','Basic',6000,400,43);
+insert into soft values('Anand','Video Titling Pack','Pascal',18000,7500,9);
+insert into soft values('Juliana','Inventory Control','Cobol',3500,3000,0);
+insert into soft values('Kamala','Payroll Package','Dbase',30000,9000,7);
+insert into soft values('Mary','Financial Account','Oracle',45000,18000,4);
+insert into soft values('Mary','Code Generator','C',20000,4500,23);
+insert into soft values('Partick','Read Me','C++',1200,300,84);
+insert into soft values('Qadir','Bombs Away','Assembly',5000,750,11);
+insert into soft values('Qadir','vaccines','C',3400,1900,21);
+insert into soft values('Ramesh','Hotel Management','Dbase',3500,12000,4);
+insert into soft values('Ramesh','Dead Lee','Pascal',45000,600,73);
+insert into soft values('Remitha','PC Utilities','C',5000,725,51);
+insert into soft values('Remitha','Trs Help Package','Assembly',6000,2500,6);
+insert into soft values('Revathi','Hospital Management','Pascal',7500,1100,2);
+insert into soft values('Revathi','Quiz Master','Basic',2100,3200,15);

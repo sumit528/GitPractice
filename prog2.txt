@@ -1,0 +1,17 @@
+
+insert into prog (pname,dob,doj,sex,prof1,prof2,salary)values ('Anand',to_date('04/21/1966','mm/dd/yyyy'),to_date('04/21/1992','mm/dd/yyyy'),'M','Pascal','Basic ',3200);
+insert into prog values('Altaf',to_date('7/2/1964','mm/dd/yyyy'),to_date('11/13/1990','mm/dd/yyyy'),'M','Clipper','Cobol',2800);
+
+insert into prog values('Juliana',to_date('01/31/1968','mm/dd/yyyy'),to_date('4/21/1990','mm/dd/yyyy'),'F','Cobol','Dbase',3000);
+
+insert into prog values('Kamala',to_date('10/30/1968','mm/dd/yyyy'),to_date('1/2/1992','mm/dd/yyyy'),'F','C','Dbase',2900);
+insert into prog values('Mary',to_date('06/24/1970','mm/dd/yyyy'),to_date('2/1/1991','mm/dd/yyyy'),'F','C++','Oracle',4500);
+insert into prog values('Nelson',to_date('09/11/1965','mm/dd/yyyy'),to_date('10/11/1989','mm/dd/yyyy'),'M','Cobol','Dbase',2500);
+insert into prog values('Partick',to_date('11/10/1965','mm/dd/yyyy'),to_date('4/21/1990','mm/dd/yyyy'),'M','Pascal','Clipper',2800);
+insert into prog values('Qadir',to_date('08/31/1965','mm/dd/yyyy'),to_date('4/21/1991','mm/dd/yyyy'),'M','Assembly','C',3000);
+insert into prog values('Ramesh',to_date('05/3/1967','mm/dd/yyyy'),to_date('2/28/1991','mm/dd/yyyy'),'M','Pascal','Dbase',3200);
+insert into prog values('Rebecca',to_date('01/1/1967','mm/dd/yyyy'),to_date('12/1/1990','mm/dd/yyyy'),'F','Basic','Cobol',2500);
+insert into prog values('Remitha',to_date('12/2/1969','mm/dd/yyyy'),to_date('1/2/1992','mm/dd/yyyy'),'F','Pascal','Basic ',3600);
+insert into prog values('Revathi',to_date('12/2/1969','mm/dd/yyyy'),to_date('1/2/1992','mm/dd/yyyy'),'F','Pascal','Basic ',3700);
+insert into prog values('Vijaya',to_date('12/14/1965','mm/dd/yyyy'),to_date('5/2/1992','mm/dd/yyyy'),'F','Foxpro','C',3500);
+
